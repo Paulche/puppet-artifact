@@ -55,7 +55,7 @@ define artifact (
       exec { "artifact ${resource}":
         path     => $path,
         provider => 'shell',
-        command  => "rm -f ${full_target} && curl -so ${full_target} ${source}",
+        command  => "rm -f ${full_target} && curl -L -so ${full_target} ${source}",
         creates  => $full_target,
         timeout  => $wait_sec,
         require  => Package['curl']
@@ -64,7 +64,7 @@ define artifact (
       exec { "artifact ${resource}":
         path     => $path,
         provider => 'shell',
-        command  => "curl -so ${full_target} ${source}",
+        command  => "curl -L -so ${full_target} ${source}",
         creates  => $full_target,
         timeout  => $wait_sec,
         require  => Package['curl']
